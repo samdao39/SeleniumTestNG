@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Create new category" verbose="1">
+    <test name="login cms">
+        <classes>
+            <class name="common.Basetest.Basetest">
+                <methods>
+                    <include name="createDriver"/>
+                    <exclude name="closeDriver"/>
+                </methods>
+            </class>>
+
+
+
+        </classes>
+    </test>
+
+</suite>

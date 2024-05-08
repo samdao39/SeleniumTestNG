@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1">
+    <test name="FirstTest">
+        <classes>
+            <class name="Bai9_TestNG.DemoTestNG" >
+           <methods>
+               <include name="createDriverChrome"/> // chạy method trong 1 class
+           </methods>
+            </class>
+
+
+
+        </classes>
+    </test>
+
+</suite>

@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Create new category" verbose="1">
+    <test name="login cms">
+        <packages>
+            <package name="BT2.Annotation">
+            </package>
+        </packages>
+</suite>

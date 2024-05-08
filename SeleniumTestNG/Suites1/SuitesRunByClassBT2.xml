@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Create new category" verbose="1">
+
+    <test name="add new category">
+        <classes>
+            <class name="com.sam.BT2.Annotation"/>
+        </classes>
+    </test>
+
+</suite>
