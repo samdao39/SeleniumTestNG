@@ -10,6 +10,7 @@ public class loginCmsPage extends WebUI {
         super(driver);
 
         this.driver = driver;
+        System.out.println("test");
     }
     public addCategoryPage loginCmsSuccess(){
         driver.get(ConfigData.Url);
