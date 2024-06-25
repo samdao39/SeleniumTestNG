@@ -20,6 +20,7 @@ public class loginCmsPage extends WebUI {
         driver.findElement(ConfigData.textboxPassword).sendKeys(ConfigData.Password);
         this.waitForElementsToBeClickabled(driver,(ConfigData.buttonLogin));
         driver.findElement(ConfigData.buttonLogin).click();
+        this.waitForPageLoaded(driver);
         driver.findElement(ConfigData.clickMenuBar).click();
         return new addCategoryPage(driver);
     }

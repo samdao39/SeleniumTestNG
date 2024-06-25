@@ -118,11 +118,10 @@ public class addNewProductPage extends WebUI {
     public void colorDropdownIsDisplayed() {
         //WebUI.loginCmsSuccess(driver);
         this.waitForPageLoaded(driver);
-        driver.findElement(addNewProductTab);
+        driver.findElement(addNewProductTab).click();
         driver.findElement(colors_Toggle).click();
         Assert.assertTrue(this.checkElementExist(driver, colorsDropdown), "colorDropdown is exist");
         driver.findElement(colorsDropdown).isEnabled();
-
     }
 
     // Viết hàm verify Text của color check số lượng

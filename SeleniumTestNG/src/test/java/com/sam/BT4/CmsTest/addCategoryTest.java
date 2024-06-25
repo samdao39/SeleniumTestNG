@@ -15,15 +15,14 @@ public class addCategoryTest extends Basetest {
     @BeforeMethod
     public void ClickCategory () {
         loginCmsPage = new loginCmsPage(driver);
-    loginCmsPage.loginCmsSuccess();
-        addCategoryPage = new addCategoryPage(driver);
- addCategoryPage.ClickCategory();
+        addCategoryPage = loginCmsPage.loginCmsSuccess();
+       // addCategoryPage = new addCategoryPage(driver);
+         addCategoryPage.ClickCategory();
     }
    @Test
    public void addNewCategory(){
         loginCmsPage = new loginCmsPage(driver);
         addCategoryPage=loginCmsPage.loginCmsSuccess();
-
        //addCategoryPage= new addCategoryPage(driver);
        addCategoryPage.AddNewCategory();
    }

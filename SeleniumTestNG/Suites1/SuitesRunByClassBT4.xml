@@ -4,7 +4,7 @@
 
     <test name="add new category">
         <classes>
-            <class name="com.sam.BT2.Annotation"/>
+            <class name="com.sam.BT4.CmsTest.addCategoryTest"/>
         </classes>
     </test>
 

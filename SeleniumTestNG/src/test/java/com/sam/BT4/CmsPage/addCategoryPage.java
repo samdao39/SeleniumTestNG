@@ -33,17 +33,17 @@ public class addCategoryPage extends WebUI {
         private By dropdownFilteringAttributes = By.xpath("//select[@name='filtering_attributes[]']/following-sibling::button");
         private By inputFilteringAttributes = By.xpath("//div[@class='dropdown-menu show']/descendant::input");
         private By buttonSave = By.xpath("//button[normalize-space()='Save']");
-    private By tabCategory = By.xpath("//a[@href='https://cms.anhtester.com/admin/categories']");
-    private By searchCategory = By.xpath("//input[@id='search']");
+    private  By tabCategory = By.xpath("//a[@href='https://cms.anhtester.com/admin/categories']");
+    private  By searchCategory = By.xpath("//input[@id='search']");
     private By itemSearch = By.xpath("((//div[@class='card-body']//table)//tbody/tr/td)[2]");
 
 
         public void ClickCategory () {
-
-            this.waitForElementsToBeClickabled(driver, ConfigData.clickMenuBar);
-            driver.findElement(ConfigData.clickMenuBar).click();
+            this.waitForPageLoaded(1000);
+            //this.waitForElementsToBeClickabled(driver, ConfigData.clickMenuBar);
+            //driver.findElement(ConfigData.clickMenuBar).click();
             //click subtab category
-            this.waitForElementsToBeClickabled(driver,tabCategory);
+            this.waitForElementsVisibled(tabCategory);
             //driver.findElement(tabCategory).click();
             this.clickElement(tabCategory);
 

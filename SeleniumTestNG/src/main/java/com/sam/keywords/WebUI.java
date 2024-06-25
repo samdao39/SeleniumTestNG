@@ -14,7 +14,7 @@ import static java.lang.Thread.sleep;
 
 public class WebUI {
     private static WebDriver driver;
-    private static int EXPLICIT_WAIT_TIMEOUT = 10;
+    private static int EXPLICIT_WAIT_TIMEOUT = 3000;
     private static double STEP_TIME = 5;
     private static int PAGE_LOAD_TIMEOUT = 20;
 
@@ -108,7 +108,7 @@ public class WebUI {
     }
     public String getElementText(By by){
         String text = getWebElement(by).getText();
-       logConsole("Get text: " + text);
+       logConsole("Get text: " + text +"on element"+by);
         return text; //Trả về một giá trị kiểu String
 
 
@@ -116,6 +116,7 @@ public class WebUI {
     public void setText( By by, String Text){
         waitForElementsVisibled(by);
         getWebElement(by).sendKeys(Text);
+        logConsole("setText"+Text+"on element"+by);
     }
     public void setWithKeys( By by,Keys keys){
         waitForElementsVisibled(by);
@@ -135,10 +136,10 @@ public class WebUI {
         List<WebElement> listElement = getListWebElements(by);
 
         if (listElement.size() > 0) {
-            System.out.println("Element " + by + " existing.");
+            System.out.println(" 🌟Element " + by + " existing.");
             return true;
         } else {
-            System.out.println("Element " + by + " NOT exist.");
+            System.out.println("🌟Element " + by + " NOT exist.");
             return false;
         }
     }
@@ -150,19 +151,23 @@ public class WebUI {
     public void waitforAlertIsPresent(By by){
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
         wait.until(ExpectedConditions.alertIsPresent());
+        logConsole("Allert message" +by);
     }
     public void titleIsPresent(By by,String text){
         WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
         wait.until(ExpectedConditions.titleIs(text));
+        logConsole("Title is" + text +"on element"+by);
 
     }
     public void elementToBeSelected(By by){
         WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeSelected(by));
+        logConsole(" element is selected"+by);
     }
     public void frameToBeAvailableAndSwitchToIt(By by){
         WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
+        logConsole("Frame available" + by );
     }
 }
 
