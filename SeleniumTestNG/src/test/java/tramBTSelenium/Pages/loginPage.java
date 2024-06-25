@@ -17,7 +17,7 @@ public class loginPage {
 
 
 
-public void loginSucess(){
+public void loginSucess(String email,String password){
     //WebUI.waitForPageLoaded(driver);
     driver.get(ConfigData.Url);
     driver.findElement(inputEmail).sendKeys(ConfigData.Email);

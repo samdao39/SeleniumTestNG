@@ -9,7 +9,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void loginCmsSucess(){
         loginpage = new loginPage(driver);
-        loginpage.loginSucess();
+        loginpage.loginSucess("","");
 
     }
 }
