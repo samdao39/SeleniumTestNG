@@ -4,15 +4,14 @@ import com.sam.constants.ConfigData;
 import com.sam.keywords.WebUI;
 import org.openqa.selenium.WebDriver;
 
-public class loginCmsPage extends WebUI {
+public class LoginCmsPage extends WebUI {
     private WebDriver driver;
-    public loginCmsPage(WebDriver driver) {
+    public LoginCmsPage(WebDriver driver) {
         super(driver);
 
         this.driver = driver;
-        System.out.println("test");
     }
-    public addCategoryPage loginCmsSuccess(){
+    public AddCategoryPage loginCmsSuccess(){
         driver.get(ConfigData.Url);
         this.waitForElementsVisibled(driver,(ConfigData.textboxEmail));
         driver.findElement(ConfigData.textboxEmail).sendKeys(ConfigData.Email);
@@ -22,6 +21,6 @@ public class loginCmsPage extends WebUI {
         driver.findElement(ConfigData.buttonLogin).click();
         this.waitForPageLoaded(driver);
         driver.findElement(ConfigData.clickMenuBar).click();
-        return new addCategoryPage(driver);
+        return new AddCategoryPage(driver);
     }
 }

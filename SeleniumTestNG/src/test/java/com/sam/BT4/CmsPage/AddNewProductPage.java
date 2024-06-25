@@ -11,9 +11,9 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class addNewProductPage extends WebUI {
+public class AddNewProductPage extends WebUI {
     private WebDriver driver;
-    public addNewProductPage(WebDriver driver) {
+    public AddNewProductPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
          new WebUI(driver);

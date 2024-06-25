@@ -1,15 +1,14 @@
 package com.sam.BT4.CmsPage;
 
-import com.sam.constants.ConfigData;
 import com.sam.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class addCategoryPage extends WebUI {
+public class AddCategoryPage extends WebUI {
     private WebDriver driver;
-    public addCategoryPage(WebDriver driver) {
+    public AddCategoryPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         new WebUI(driver);
@@ -46,10 +45,9 @@ public class addCategoryPage extends WebUI {
             this.waitForElementsVisibled(tabCategory);
             //driver.findElement(tabCategory).click();
             this.clickElement(tabCategory);
-
         }
 
-        public addNewProductPage SearchCategory () {
+        public AddNewProductPage SearchCategory () {
 
             this.setText(searchCategory,"hoa hong do");
             //driver.findElement(searchCategory).sendKeys("hoa hong do");
@@ -59,10 +57,11 @@ public class addCategoryPage extends WebUI {
             String getName = driver.findElement(itemSearch).getText();
             System.out.println(getName);
             Assert.assertEquals(getName, "hoa hong do");
-            return new addNewProductPage(driver);
+            return new AddNewProductPage(driver);
         }
 
         public void AddNewCategory () {
+            driver.findElement(By.xpath("//a[@href='https://cms.anhtester.com/admin/categories/create']")).click();
             this.clickElement(nameCategory);
             // add name
             this.setText(nameCategory,"hoa hong do");
