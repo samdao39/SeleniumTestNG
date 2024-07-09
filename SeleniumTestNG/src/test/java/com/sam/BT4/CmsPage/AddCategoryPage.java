@@ -1,5 +1,8 @@
 package com.sam.BT4.CmsPage;
+import static com.sam.keywords.WebUI.*;
 
+import com.sam.BT4.Model.Category;
+import com.sam.constants.ConfigData;
 import com.sam.keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -10,21 +13,22 @@ public class AddCategoryPage extends WebUI {
     private WebDriver driver;
     public AddCategoryPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
+
         new WebUI(driver);
 
     }
+        private By button_AddNewCategory = By.xpath("//a[normalize-space()='Add New category']");
         private By nameCategory = By.id("name");
         private By dropdownParentCategory = By.xpath("(//select[@name='parent_id']/ancestor::div)/button");
-        private By inputParentCategory = By.xpath("//div[@class='dropdown-menu show']//input[@type='search']");
-        private By inputOrderingNumber = By.xpath("(//select[@name='parent_id']/ancestor::div)/button");
-        private By dropdownType = By.xpath("(//div[normalize-space()='Physical'])[1]");
-        private By selectType = By.xpath("//a[normalize-space()='Physical']");
+        private By inputParentCategory = By.xpath("(//input[@type='search'])[1]");
+        private By inputOrderingNumber = By.xpath("//input[@id='order_level']");
+        private By dropdownType = By.xpath("(//button[@type='button'])[2]");
+        private By selectType = By.xpath("//a[@id='bs-select-2-1']/parent::li");
         private By clickBanner = By.xpath("(//div[@data-type='image']//div[contains(text(),'Browse')])[1]");
         private By searchBanner = By.xpath("//div[@class='modal-content h-100']//div//input[@placeholder='Search your files']");
-        private By selectBanner = By.xpath("//img[@src='//cms.anhtester.com/public/uploads/all/ayPNrcw9RZbHlyAS9haXXsfofRYXNejWrl11JmFs.jpg']");
+        private By selectBanner = By.xpath("(//div[@id='aiz-select-file']//img)[1]");
         private By clickIcon = By.xpath("(//div[@data-type='image']//div[contains(text(),'Browse')])[2]");
-        private By selectIcon = By.xpath("//img[@src='//cms.anhtester.com/public/uploads/all/gqgVzXYdkORZhfIHQ51ZZy8iuCMYy9h9bVeIdElW.png']");
+        private By selectIcon = By.xpath("(//div[@id='aiz-select-file']//img)[1]");
         private By searchIcon = By.xpath("//div[@class='modal-content h-100']//div//input[@placeholder='Search your files']");
         private By addFileButton = By.xpath("//button[normalize-space()='Add Files']");
         private By inputMetaTiTle = By.name("meta_title");
@@ -32,74 +36,82 @@ public class AddCategoryPage extends WebUI {
         private By dropdownFilteringAttributes = By.xpath("//select[@name='filtering_attributes[]']/following-sibling::button");
         private By inputFilteringAttributes = By.xpath("//div[@class='dropdown-menu show']/descendant::input");
         private By buttonSave = By.xpath("//button[normalize-space()='Save']");
-    private  By tabCategory = By.xpath("//a[@href='https://cms.anhtester.com/admin/categories']");
+    private  By tabCategory = By.xpath("//span[normalize-space()='Category']");
     private  By searchCategory = By.xpath("//input[@id='search']");
     private By itemSearch = By.xpath("((//div[@class='card-body']//table)//tbody/tr/td)[2]");
 
 
         public void ClickCategory () {
-            this.waitForPageLoaded(1000);
-            //this.waitForElementsToBeClickabled(driver, ConfigData.clickMenuBar);
-            //driver.findElement(ConfigData.clickMenuBar).click();
-            //click subtab category
-            this.waitForElementsVisibled(tabCategory);
-            //driver.findElement(tabCategory).click();
-            this.clickElement(tabCategory);
+          waitForPageLoaded(3);
+          //getWebElement(ConfigData.clickMenuBar).click();
+            waitForElementsToBeClickabled(tabCategory);
+          getWebElement(tabCategory).click();
         }
 
-        public AddNewProductPage SearchCategory () {
-
-            this.setText(searchCategory,"hoa hong do");
+        public AddNewProductPage SearchCategory (String categoryName) {
+          setText(searchCategory, categoryName);
             //driver.findElement(searchCategory).sendKeys("hoa hong do");
-            this.setWithKeys(searchCategory, Keys.ENTER);
+          setWithKeys(searchCategory, Keys.ENTER);
            // driver.findElement(searchCategory).sendKeys(Keys.ENTER);
-            this.waitForElementsToBeClickabled(driver,itemSearch);
-            String getName = driver.findElement(itemSearch).getText();
+          waitForElementsToBeClickabled(itemSearch);
+            String getName =getWebElement(itemSearch).getText();
             System.out.println(getName);
-            Assert.assertEquals(getName, "hoa hong do");
+            Assert.assertEquals(getName, categoryName,"Category name matching ");
             return new AddNewProductPage(driver);
+
         }
 
-        public void AddNewCategory () {
-            driver.findElement(By.xpath("//a[@href='https://cms.anhtester.com/admin/categories/create']")).click();
-            this.clickElement(nameCategory);
+        public void AddNewCategory (Category category) {
+            waitForElementsToBeClickabled(button_AddNewCategory);
+            getWebElement(button_AddNewCategory).click();
+            waitForPageLoaded(3);
+          clickElement(nameCategory);
             // add name
-            this.setText(nameCategory,"hoa hong do");
+          setText(nameCategory,category.name);
             // add parent category
-            this.clickElement(dropdownParentCategory);
-            this.setText(inputParentCategory,"Sport shoes");
-            this.setWithKeys(inputParentCategory,Keys.ENTER);
+          clickElement(dropdownParentCategory);
+          setText(inputParentCategory,category.parentCategory);
+          setWithKeys(inputParentCategory,Keys.ENTER);
 
 // add Ordering Number
-            this.setText(inputOrderingNumber,"1");
+          waitForElementsToBeClickabled(inputOrderingNumber);
+          setText(inputOrderingNumber,"1");
             // add type
-            this.clickElement(dropdownType);
-            this.clickElement(selectType);
+          clickElement(dropdownType);
+          clickElement(selectType);
 // add banner
-            this.clickElement(clickBanner);
-            this.waitForElementsToBeClickabled(driver, clickBanner);
-            this.setText(searchBanner,"hoa hong");
-            this.waitForElementsToBeClickabled(driver, selectBanner);
-            this.clickElement(selectBanner);
-            this.waitForElementsToBeClickabled(driver, addFileButton);
-            this.clickElement(addFileButton);
-            this.waitForElementsToBeClickabled(driver, clickIcon);
+          clickElement(clickBanner);
+          waitForPageLoaded(3);
+          waitForElementsToBeClickabled(searchBanner);
+          setText(searchBanner,category.banner);
+          waitForPageLoaded(5);
+         // waitForElementsToBeClickabled(selectBanner);
+          clickElement(selectBanner);
+         // waitForElementsToBeClickabled(driver, addFileButton);
+          clickElement(addFileButton);
+
             // add icon
-            this.clickElement(clickIcon);
-            this.setText(selectIcon,"balo");
-            this.waitForElementsToBeClickabled(driver, searchIcon);
-            this.clickElement(selectIcon);
-            this.clickElement(addFileButton);
+            waitForElementsToBeClickabled(clickIcon);
+          clickElement(clickIcon);
+          waitForPageLoaded(5);
+          waitForElementsToBeClickabled(searchIcon);
+
+          setText(searchIcon,"balo");
+            waitForPageLoaded(5);
+          //waitForElementsToBeClickabled(selectIcon);
+          clickElement(selectIcon);
+          clickElement(addFileButton);
             // input Meta TiTle
-            this.setText(inputMetaTiTle,"balo");
+          setText(inputMetaTiTle,"balo");
 
             //Input meta description
-            this.setText(inputMetaDescription,"hello");
+          setText(inputMetaDescription,"hello");
             //Filtering Attributes
-            this.clickElement(dropdownFilteringAttributes);
-            this.setText(inputFilteringAttributes,"size");
-            this.setWithKeys(inputFilteringAttributes,Keys.ENTER);
-            this.clickElement(buttonSave);
+          clickElement(dropdownFilteringAttributes);
+          setText(inputFilteringAttributes,"size");
+          setWithKeys(inputFilteringAttributes,Keys.ENTER);
+          clickElement(buttonSave);
+          waitForPageLoaded(5);
         }
 
     }
