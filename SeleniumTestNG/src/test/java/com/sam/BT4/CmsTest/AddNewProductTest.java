@@ -12,14 +12,14 @@ public class AddNewProductTest extends Basetest {
     private AddCategoryPage addCategoryPage;
     private LoginCmsPage loginCmsPage;
 
-//  @Test(priority = 1)
-//    public void createNewProduct() {
-//      loginCmsPage = new LoginCmsPage(driver);
-//     loginCmsPage.loginCmsSuccess();
-//      addNewProductPage  = new AddNewProductPage(driver);
-//       addNewProductPage.addNewProduct();
-//
-//    }
+  @Test(priority = 1)
+    public void createNewProduct() {
+      loginCmsPage = new LoginCmsPage(driver);
+     loginCmsPage.loginCmsSuccess();
+      addNewProductPage  = new AddNewProductPage(driver);
+       addNewProductPage.addNewProduct();
+
+    }
 
     @Test(priority = 3)
     public void checkDisplayColorsSuccess() {

@@ -50,14 +50,11 @@ public class AddNewProductPage extends WebUI {
 
     // Vết hàm taọ product thành công
     public void addNewProduct() {
-
         waitForPageLoaded(5);
         waitForElementsToBeClickabled(addNewProductTab);
-        //driver.findElement(addNewProductTab).click();
         getWebElement(addNewProductTab).click();
-         checkElementExist(driver,inputProductname);
+        checkElementExist(driver,inputProductname);
         waitForElementsVisibled(inputProductname);
-        //WebUI.checkElementExist(driver,inputProductname);
        getWebElement(inputProductname).sendKeys("body suit");
        getWebElement(clickCategoryDropdown).click();
        waitForElementsToBeClickabled(searchCategory);
@@ -73,39 +70,36 @@ public class AddNewProductPage extends WebUI {
         action.keyDown(getWebElement(inputWeight), Keys.COMMAND).sendKeys("A").keyUp(Keys.COMMAND).build().perform();
         action.keyDown(getWebElement(inputWeight), Keys.COMMAND).sendKeys("X").keyUp(Keys.COMMAND).build().perform();
         action.sendKeys(getWebElement(inputWeight), Keys.COMMAND, "10").build().perform();
-       getWebElement(inputMinimumPurchaseQty).sendKeys("1");
-//        WebUI.waitForElementsVisibled(driver,inputTags);
-//       getWebElement((inputTags).sendKeys("Sam Test product 1");
-
-       getWebElement(galleryImages).click();
+        getWebElement(inputMinimumPurchaseQty).sendKeys("1");
+        getWebElement(galleryImages).click();
         waitForElementsVisibled(driver, searchGalleryImage);
-       getWebElement(searchGalleryImage).click();
+        getWebElement(searchGalleryImage).click();
         action.sendKeys(getWebElement(searchGalleryImage), "lenovo");
         waitForElementsVisibled(driver, imageLenovo);
-       getWebElement(imageLenovo).click();
-       getWebElement(addFilesButton).click();
+        getWebElement(imageLenovo).click();
+        getWebElement(addFilesButton).click();
         waitForElementsToBeClickabled(colors_Toggle);
-       getWebElement(colors_Toggle).click();
+        getWebElement(colors_Toggle).click();
         waitForElementsVisibled( colorsDropdown);
         waitForPageLoaded(driver);
-       getWebElement(colorsDropdown).click();
+        getWebElement(colorsDropdown).click();
         waitForElementsVisibled(inputColors);
-       getWebElement(inputColors).click();
+        getWebElement(inputColors).click();
         action.sendKeys(getWebElement(inputColors), "MediumPurple").sendKeys(Keys.ENTER).build().perform();
         sleep(3);
-       getWebElement(colorsDropdown).click();
+        getWebElement(colorsDropdown).click();
         sleep(3);
         waitForElementsToBeClickabled(selectAttributes);
-       getWebElement(selectAttributes).click();
+        getWebElement(selectAttributes).click();
         waitForElementsVisibled(inputAttributes);
-       getWebElement(inputAttributes).sendKeys("size");
+        getWebElement(inputAttributes).sendKeys("size");
         action.sendKeys(Keys.ENTER).perform();
         sleep(3);
        getWebElement(inputUnitPrice).sendKeys("1000");
        getWebElement(inputDiscount).sendKeys("10");
        getWebElement(inputQuantity).sendKeys("10");
        getWebElement(saveButton).click();
-        sleep(3);
+       sleep(3);
 
     }
 
@@ -117,36 +111,30 @@ public class AddNewProductPage extends WebUI {
         Assert.assertTrue(checkElementExist(driver, colorsDropdown), "colorDropdown is exist");
       // getWebElement(colorsDropdown).isEnabled();
     }
-
     // Viết hàm verify Text của color check số lượng
     public void countColors() {
-        waitForPageLoaded(5);
-//       getWebElement((addNewProductTab);
-//       getWebElement((colors_Toggle).click();
-        WebElement element = getWebElement(colorsDropdown);
-
-        Select dropdown = new Select(element);
-        List<WebElement> colorsList = dropdown.getOptions();
-        Number quatityColors = colorsList.size();
-        for (int i = 0; i <= colorsList.size(); i++) {
-            WebElement webElement = colorsList.get(i);
-            System.out.println("Danh sách colors:" + webElement.getText());
+        waitForPageLoaded(5); // Wait for the page to load
+        Select dropdown = new Select(getWebElement(colorsDropdown)); // Get the dropdown element
+        List<WebElement> colorsList = dropdown.getOptions(); // Get the list of options in the dropdown
+        int quantityColors = colorsList.size(); // Get the number of options
+        // Assert that the number of options is 143
+        Assert.assertEquals(quantityColors, 143, "The quantity of colors displayed is incorrect.");
+        // Print the text of each color option in the dropdown
+        for (int i = 0; i < colorsList.size(); i++) {
+            System.out.println("Color " + (i + 1) + ": " + colorsList.get(i).getText());
         }
-        // Assert.assertEquals(quatityColors,"Số lượng Colors là bằng quatity Colors", "Số lượng Colors không đủ");
-        getWebElement(colorsDropdown).click();
-        Assert.assertEquals(getWebElement(colorsDropdown).getText(), quatityColors, "The quantity colors is displayed correct");
     }
+
 
     //Viết hàm hiển thị product vừa tạo
     public void displayNewProductSuccess() {
-       // WebUI.loginCmsSuccess(driver);
         waitForPageLoaded(5);
        getWebElement(allProductsTab).click();
        waitForElementsToBeClickabled(searchProductName);
        getWebElement(searchProductName).sendKeys("body suit");
-        checkElementExist(driver, displayProductNameCreated);
+       checkElementExist(driver, displayProductNameCreated);
        getWebElement(displayProductNameCreated).isDisplayed();
-        Assert.assertEquals(getWebElement(displayProductNameCreated).getText(), "body suit", "Name is matching ");
+       Assert.assertEquals(getWebElement(displayProductNameCreated).getText(), "body suit", "Name is matching ");
     }
 
 }
