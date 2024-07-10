@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Demo Multi Browser" verbose="1">
+
+    <test name="Demo Multi Browser">
+        <parameter name="browser" value="safari"></parameter>
+  <classes>
+      <class name="tramBTSelenium.TestCase.LoginTest"></class>
+  </classes>
+    </test>
+
+</suite>

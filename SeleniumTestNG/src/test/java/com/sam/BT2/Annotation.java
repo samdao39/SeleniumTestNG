@@ -18,7 +18,7 @@
 //    //click tab products
 //    @BeforeMethod
 //    public void ClickCategory() {
-//        WebUI.waitForElementsToBeClickabled(driver,By.xpath("//span[normalize-space()='Products']"));
+//       WebUI.waitForElementsToBeClickabled(driver,By.xpath("//span[normalize-space()='Products']"));
 //        driver.findElement(By.xpath("//span[normalize-space()='Products']")).click();
 //
 //        //click subtab category

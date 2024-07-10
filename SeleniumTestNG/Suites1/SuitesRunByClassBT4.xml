@@ -3,9 +3,10 @@
 <suite name="Suite Create new category" verbose="1">
 
     <test name="add new category">
-        <classes>
-            <class name="com.sam.BT4.CmsTest.AddCategoryTest"/>
-        </classes>
+    <packages>
+        <package name="com.sam.BT4"/>
+
+    </packages>
     </test>
 
 </suite>

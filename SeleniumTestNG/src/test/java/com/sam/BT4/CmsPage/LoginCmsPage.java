@@ -11,16 +11,17 @@ public class LoginCmsPage extends WebUI {
 
         this.driver = driver;
     }
-    public AddCategoryPage loginCmsSuccess(){
+    public AddCategoryPage loginCmsSuccess() {
         driver.get(ConfigData.Url);
-        this.waitForElementsVisibled(driver,(ConfigData.textboxEmail));
+        this.waitForElementsVisibled(driver, (ConfigData.textboxEmail));
         driver.findElement(ConfigData.textboxEmail).sendKeys(ConfigData.Email);
-        this.waitForElementsVisibled(driver,(ConfigData.textboxPassword));
+        this.waitForElementsVisibled(driver, (ConfigData.textboxPassword));
         driver.findElement(ConfigData.textboxPassword).sendKeys(ConfigData.Password);
-        this.waitForElementsToBeClickabled(driver,(ConfigData.buttonLogin));
+        this.waitForElementsToBeClickabled(driver, (ConfigData.buttonLogin));
         driver.findElement(ConfigData.buttonLogin).click();
-        this.waitForPageLoaded(driver);
+        this.waitForElementsToBeClickabled(ConfigData.clickMenuBar);
         driver.findElement(ConfigData.clickMenuBar).click();
+        this.waitForPageLoaded(5);
         return new AddCategoryPage(driver);
     }
 }

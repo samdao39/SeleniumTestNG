@@ -19,7 +19,7 @@ import java.time.Duration;
 
 public class Basetest {
     public WebDriver driver;
-    @BeforeMethod
+@BeforeClass
     public void createDriver() {
         driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
@@ -29,7 +29,7 @@ public class Basetest {
 
 
 
-@AfterMethod
+@AfterClass
 
     public void closeDriver() {
         driver.quit();

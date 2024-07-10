@@ -14,9 +14,9 @@ import static java.lang.Thread.sleep;
 
 public class WebUI {
     private static WebDriver driver;
-    private static int EXPLICIT_WAIT_TIMEOUT = 3000;
-    private static double STEP_TIME = 5;
-    private static int PAGE_LOAD_TIMEOUT = 20;
+    private static int EXPLICIT_WAIT_TIMEOUT = 5;
+    private static double STEP_TIME = 3;
+    private static int PAGE_LOAD_TIMEOUT = 10;
 
     public WebUI (WebDriver driver){
         this.driver= driver;
@@ -113,14 +113,38 @@ public class WebUI {
 
 
     }
+    public WebElement highLightElement (By by, String color ) {
+        if (driver instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid'"+ color+"'", getWebElement(by));
+            sleep(STEP_TIME);
+        }
+        return getWebElement(by);
+    }
+    //.`arguments[0].style.border='3px solid ${color}'`
+
+
+
     public void setText( By by, String Text){
         waitForElementsVisibled(by);
         getWebElement(by).sendKeys(Text);
-        logConsole("setText"+Text+"on element"+by);
+        logConsole("\uD83D\uDC49 setText "+Text+" on element "+by);
     }
+
+    /**
+     *
+     * @param by
+     * @param keys
+     */
     public void setWithKeys( By by,Keys keys){
         waitForElementsVisibled(by);
         getWebElement(by).sendKeys(keys);
+    }
+    public String getElementAttribute(By by, String attributeName){
+        waitForElementsVisibled(by);
+        sleep(STEP_TIME);
+        String text = getWebElement(by).getAttribute(attributeName);
+        logConsole( "Attribute value" +text);
+        return  text;
     }
 
 
@@ -136,10 +160,10 @@ public class WebUI {
         List<WebElement> listElement = getListWebElements(by);
 
         if (listElement.size() > 0) {
-            System.out.println(" 🌟Element " + by + " existing.");
+            System.out.println("✅Check Element " +true + by + " existing.");
             return true;
         } else {
-            System.out.println("🌟Element " + by + " NOT exist.");
+            System.out.println("\uD83C\uDD98Check Element " +false+ by + " NOT exist.");
             return false;
         }
     }
@@ -169,6 +193,42 @@ public class WebUI {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
         logConsole("Frame available" + by );
     }
+    public boolean verifyEquals(Object actual, Object expected) {
+        waitForPageLoaded(3);
+        System.out.println("Verify equals: " + actual + " =" + expected);
+        boolean check = actual.equals(expected);
+        return check;
+    }
+
+    public void assertEquals(Object actual, Object expected, String message) {
+        waitForPageLoaded(3);
+        System.out.println("Assert equals: " + actual + " = " + expected);
+        Assert.assertEquals(actual, expected, message);
+    }
+
+    public boolean verifyContains(String actual, String expected) {
+        waitForPageLoaded(3);
+        System.out.println("Verify contains: " + actual + " and " + expected);
+        boolean check = actual.contains(expected);
+        return check;
+    }
+
+    public void assertContains(String actual, String expected, String message) {
+        waitForPageLoaded(3);
+        System.out.println("Assert contains: " + actual + " and " + expected);
+        boolean check = actual.contains(expected);
+        Assert.assertTrue(check, message);
+    }
 }
 
 
+
+//public void myFunction() {
+//        try {
+//           // copy toàn bộ code của function hiện tại bỏ vào đây
+//        } catch (Exception e) {
+//            System.out.println("An error occurred: " + e.getMessage());
+//        } finally {
+//            System.out.println("This is the finally block.");
+//        }
+//    }
