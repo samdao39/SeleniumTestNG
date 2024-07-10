@@ -15,9 +15,9 @@ public class AddNewProductTest extends Basetest {
   @Test(priority = 1)
     public void createNewProduct() {
       loginCmsPage = new LoginCmsPage(driver);
-     loginCmsPage.loginCmsSuccess();
+      loginCmsPage.loginCmsSuccess();
       addNewProductPage  = new AddNewProductPage(driver);
-       addNewProductPage.addNewProduct();
+      addNewProductPage.addNewProduct();
 
     }
 
@@ -31,11 +31,11 @@ public class AddNewProductTest extends Basetest {
     }
 
 
-//    @Test(priority = 2)
-//    public void checkCreateNewProductSuccess() {
-//        loginCmsPage = new LoginCmsPage(driver);
-//        loginCmsPage.loginCmsSuccess();
-//        addNewProductPage = new AddNewProductPage(driver);
-//        addNewProductPage.displayNewProductSuccess();
-//    }
+   @Test(priority = 2)
+ public void checkCreateNewProductSuccess() {
+       loginCmsPage = new LoginCmsPage(driver);
+       loginCmsPage.loginCmsSuccess();
+       addNewProductPage = new AddNewProductPage(driver);
+       addNewProductPage.displayNewProductSuccess();
+   }
 }
