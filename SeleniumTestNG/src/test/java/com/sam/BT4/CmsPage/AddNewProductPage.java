@@ -106,8 +106,8 @@ public class AddNewProductPage extends WebUI {
     // check colorDropdownIsDisplayed
     public void enabledDropdownToggle() {
         waitForPageLoaded(5);
-       getWebElement(addNewProductTab).click();
-       getWebElement(colors_Toggle).click();
+        getWebElement(addNewProductTab).click();
+        getWebElement(colors_Toggle).click();
         Assert.assertTrue(checkElementExist(driver, colorsDropdown), "colorDropdown is exist");
       // getWebElement(colorsDropdown).isEnabled();
     }
